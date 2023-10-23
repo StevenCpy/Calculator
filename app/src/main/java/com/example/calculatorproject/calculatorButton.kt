@@ -6,7 +6,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -18,22 +17,22 @@ val buttonModifier = Modifier
     .clip(shape = CircleShape)
 
 @Composable
-fun calculatorButton(
+fun CalculatorButton(
     symbol : String,
     calculatorState: CalculatorState,
     modifier : Modifier = buttonModifier,
-    onClick : () -> Unit,
+    onClick : () -> Unit
 ) {
     Button(
-        onClick = { calculatorState.copy(decimalEnabled = true) },
+        onClick = onClick,
         modifier = modifier,
         enabled = when (symbol) {
-            in "0".."9" -> calculatorState.numEnabled
-            "+", "-", "x", "%" -> calculatorState.operatorEnabled
-            "+/-" -> calculatorState.signEnabled
-            "=" -> calculatorState.equalEnabled
-            "." -> calculatorState.decimalEnabled
-            else -> calculatorState.clearEnabled
+            in "0".."9" -> calculatorState.numEnabled.value
+            "+", "-", "x", "%" -> calculatorState.operatorEnabled.value
+            "+/-" -> calculatorState.signEnabled.value
+            "=" -> calculatorState.equalEnabled.value
+            "." -> calculatorState.decimalEnabled.value
+            else -> calculatorState.clearEnabled.value
         }
     ) {
         Box(

@@ -15,11 +15,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,7 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.example.calculatorproject.ui.theme.CalculatorProjectTheme
 
 @Composable
-fun buttonLayout(calculatorState: CalculatorState) {
+fun ButtonLayout(calculatorState: CalculatorState) {
     @Composable
     fun rowSpacing() { Spacer(modifier = Modifier.height(5.dp)) }
 
@@ -39,9 +37,7 @@ fun buttonLayout(calculatorState: CalculatorState) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        var text by remember {
-            mutableStateOf(calculatorState.num1 + calculatorState.operation + calculatorState.num2)
-        }
+        val text = calculatorState.num1.value + calculatorState.operation.value + calculatorState.num2.value
         Row (modifier = Modifier
             .width(360.dp)
             .height(90.dp)
@@ -50,52 +46,52 @@ fun buttonLayout(calculatorState: CalculatorState) {
         }
         rowSpacing()
         Row {
-            calculatorButton("C", calculatorState,
+            CalculatorButton("C", calculatorState,
                 Modifier
                     .width(270.dp)
                     .height(90.dp)) { CalculatorAction().clear(calculatorState) }
             columnSpacing()
-            calculatorButton("+", calculatorState) { CalculatorAction().operator("+", calculatorState) }
+            CalculatorButton("+", calculatorState) { CalculatorAction().operator("+", calculatorState) }
         }
         rowSpacing()
         Row {
-            calculatorButton("7", calculatorState) { CalculatorAction().appendDigit("7", calculatorState) }
+            CalculatorButton("7", calculatorState) { CalculatorAction().appendDigit("7", calculatorState) }
             columnSpacing()
-            calculatorButton("8", calculatorState) { CalculatorAction().appendDigit("8", calculatorState) }
+            CalculatorButton("8", calculatorState) { CalculatorAction().appendDigit("8", calculatorState) }
             columnSpacing()
-            calculatorButton("9", calculatorState) { CalculatorAction().appendDigit("9", calculatorState) }
+            CalculatorButton("9", calculatorState) { CalculatorAction().appendDigit("9", calculatorState) }
             columnSpacing()
-            calculatorButton("-", calculatorState) { CalculatorAction().operator("-", calculatorState) }
+            CalculatorButton("-", calculatorState) { CalculatorAction().operator("-", calculatorState) }
         }
         rowSpacing()
         Row {
-            calculatorButton("4", calculatorState) { CalculatorAction().appendDigit("4", calculatorState) }
+            CalculatorButton("4", calculatorState) { CalculatorAction().appendDigit("4", calculatorState) }
             columnSpacing()
-            calculatorButton("5", calculatorState) { CalculatorAction().appendDigit("5", calculatorState) }
+            CalculatorButton("5", calculatorState) { CalculatorAction().appendDigit("5", calculatorState) }
             columnSpacing()
-            calculatorButton("6", calculatorState) { CalculatorAction().appendDigit("6", calculatorState) }
+            CalculatorButton("6", calculatorState) { CalculatorAction().appendDigit("6", calculatorState) }
             columnSpacing()
-            calculatorButton("x", calculatorState) { CalculatorAction().operator("*", calculatorState) }
+            CalculatorButton("x", calculatorState) { CalculatorAction().operator("*", calculatorState) }
         }
         rowSpacing()
         Row {
-            calculatorButton("1", calculatorState) { CalculatorAction().appendDigit("1", calculatorState) }
+            CalculatorButton("1", calculatorState) { CalculatorAction().appendDigit("1", calculatorState) }
             columnSpacing()
-            calculatorButton("2", calculatorState) { CalculatorAction().appendDigit("2", calculatorState) }
+            CalculatorButton("2", calculatorState) { CalculatorAction().appendDigit("2", calculatorState) }
             columnSpacing()
-            calculatorButton("3", calculatorState) { CalculatorAction().appendDigit("3", calculatorState) }
+            CalculatorButton("3", calculatorState) { CalculatorAction().appendDigit("3", calculatorState) }
             columnSpacing()
-            calculatorButton("%", calculatorState) { CalculatorAction().operator("/", calculatorState) }
+            CalculatorButton("%", calculatorState) { CalculatorAction().operator("/", calculatorState) }
         }
         rowSpacing()
         Row {
-            calculatorButton("+/-", calculatorState) { CalculatorAction().sign(calculatorState) }
+            CalculatorButton("+/-", calculatorState) { CalculatorAction().sign(calculatorState) }
             columnSpacing()
-            calculatorButton("0", calculatorState) { CalculatorAction().appendDigit("0", calculatorState) }
+            CalculatorButton("0", calculatorState) { CalculatorAction().appendDigit("0", calculatorState) }
             columnSpacing()
-            calculatorButton(".", calculatorState) { CalculatorAction().decimal(calculatorState) }
+            CalculatorButton(".", calculatorState) { CalculatorAction().decimal(calculatorState) }
             columnSpacing()
-            calculatorButton("=", calculatorState) { CalculatorAction().equal(calculatorState) }
+            CalculatorButton("=", calculatorState) { CalculatorAction().equal(calculatorState) }
         }
     }
 }
@@ -108,9 +104,8 @@ class MainActivity : ComponentActivity() {
                 //val calculatorState : CalculatorState = CalculatorState()
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    var calculatorState by remember { mutableStateOf(CalculatorState()) }
-                    calculatorState.signEnabled = true
-                    buttonLayout(calculatorState)
+                    val calculatorState by remember { mutableStateOf(CalculatorState()) }
+                    ButtonLayout(calculatorState)
                 }
             }
         }
