@@ -1,7 +1,7 @@
 This is a Calculator written in Kotlin for Android and using Jetpack Compose.  This is a personal project and my first ever application written for Android.
 
 The step-by-step process by which I built the app can be found in the issue **Construction of App**
-https://gitlab.com/all-personal-projects/android-apps/calculator/-/issues/1
+https://gitlab.com/all-personal-projects/android-apps/calculator/-/issues/1.
 
 The calculator contains Number[0-9], Operator[+,-,*,/], Sign[+/-], Equal[=], Decimal[.] and Clear[C] buttons.  Invalid inputs are handled by preventing the user from pressing a button when it is invalid to do so.
 
