@@ -65,7 +65,7 @@ class CalculatorAction {
             else -> calculatorState.num1.value.toDouble()
         }
         // remove trailing zeros and save to num1
-        calculatorState.num1.value = DecimalFormat("0.###############").format(result).toString()
+        calculatorState.num1.value = DecimalFormat("0.###########").format(result).toString()
         calculatorState.num2.value = ""
         calculatorState.operation.value = ""
         // when user pressed on Equal button,
