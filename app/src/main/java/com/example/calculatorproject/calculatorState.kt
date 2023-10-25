@@ -3,7 +3,7 @@ package com.example.calculatorproject
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 
-class CalculatorState (
+data class CalculatorState (
     var num1 : MutableState<String> = mutableStateOf(""),
     var num2 : MutableState<String> = mutableStateOf(""),
     var operation : MutableState<String> = mutableStateOf(""),
