@@ -2,11 +2,29 @@ package com.example.calculatorproject
 
 import java.text.DecimalFormat
 
+// digits_count returns the number of digits in expr
+// expr can contain minus and decimal points
+fun digitsCount(expr : String, numIsDecimal : Boolean) : Int {
+    var digits = expr.length
+    if (expr.isNotEmpty()) {
+        if (expr[0] == '-') digits -= 1
+        if (numIsDecimal) digits -= 1
+    }
+    return digits
+}
 class CalculatorAction {
     fun appendDigit(digit : String, calculatorState: CalculatorState) {
         if (calculatorState.operation.value == "") {  // append digit to num1
+            if (digitsCount(calculatorState.num1.value, calculatorState.numIsDecimal.value) == 15) {
+                calculatorState.maxDigits.value = true  // more than 15 digits
+                return
+            }
             calculatorState.num1.value += digit
         } else {    // append digit to num 2
+            if (digitsCount(calculatorState.num2.value, calculatorState.numIsDecimal.value) == 15) {
+                calculatorState.maxDigits.value = true  // more than 15 digits
+                return
+            }
             calculatorState.num2.value += digit
         }
         // when pressing a Number button,
@@ -65,7 +83,7 @@ class CalculatorAction {
             else -> calculatorState.num1.value.toDouble()
         }
         // remove trailing zeros and save to num1
-        calculatorState.num1.value = DecimalFormat("0.###########").format(result).toString()
+        calculatorState.num1.value = DecimalFormat("0.##############").format(result).toString()
         calculatorState.num2.value = ""
         calculatorState.operation.value = ""
         // when user pressed on Equal button,

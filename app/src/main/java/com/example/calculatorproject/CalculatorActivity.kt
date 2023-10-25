@@ -9,8 +9,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -21,9 +24,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.calculatorproject.ui.theme.CalculatorProjectTheme
+import java.util.Timer
+import kotlin.concurrent.schedule
+
+const val appVersion = "1.01"
 
 @Composable
 fun ButtonLayout(calculatorState: CalculatorState) {
@@ -35,13 +44,17 @@ fun ButtonLayout(calculatorState: CalculatorState) {
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxSize()
     ) {
-        val text = calculatorState.num1.value + calculatorState.operation.value + calculatorState.num2.value
-        Row (modifier = Modifier
-            .width(360.dp)
-            .height(90.dp)
-            .background(color = Color.LightGray)) {
+        Row(modifier = Modifier.height(30.dp)) {
+            if (calculatorState.maxDigits.value) {
+                Text("Cannot enter more than 15 digits!")
+                Timer().schedule(800) { calculatorState.maxDigits.value = false }
+            }
+        }
+        val text = addCommas(calculatorState.num1.value + calculatorState.operation.value + calculatorState.num2.value)
+        Row (modifier = Modifier.width(360.dp).height(90.dp).background(color = Color.LightGray)) {
             Text(text, fontSize = 30.sp)
         }
         rowSpacing()
@@ -105,7 +118,22 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     val calculatorState by remember { mutableStateOf(CalculatorState()) }
-                    ButtonLayout(calculatorState)
+                    Column(modifier = Modifier.background(color = Color.DarkGray)) {
+                        Row {
+                            Card(
+                                shape = RoundedCornerShape(8.dp),
+                                modifier = Modifier.height(70.dp).fillMaxWidth().background(color = Color.DarkGray)
+                            ) {
+                                Row {
+                                    Text("Calculator Project", fontSize = 40.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+                                }
+                                Row {
+                                    Text("Version $appVersion", fontSize = 12.sp, textAlign = TextAlign.Right, modifier = Modifier.align(Alignment.Bottom).fillMaxWidth())
+                                }
+                            }
+                        }
+                        ButtonLayout(calculatorState)
+                    }
                 }
             }
         }
