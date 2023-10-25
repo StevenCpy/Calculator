@@ -14,5 +14,7 @@ data class CalculatorState (
     var equalEnabled : MutableState<Boolean> = mutableStateOf(false),   // true if Equal button [=] is enabled
     var signEnabled : MutableState<Boolean> = mutableStateOf(true),     // true if Sign button [+/-] is enabled
     var decimalEnabled : MutableState<Boolean> = mutableStateOf(false), // true if Decimal point button [.] is enabled
-    var clearEnabled : MutableState<Boolean> = mutableStateOf(true)     // true if Clear button [C] is enabled
+    var clearEnabled : MutableState<Boolean> = mutableStateOf(true),    // true if Clear button [C] is enabled
+
+    var maxDigits : MutableState<Boolean> = mutableStateOf(false)
 )

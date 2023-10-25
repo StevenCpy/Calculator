@@ -12,9 +12,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-val buttonModifier = Modifier
-    .size(90.dp)
-    .clip(shape = CircleShape)
+val buttonModifier = Modifier.size(90.dp).clip(shape = CircleShape)
 
 @Composable
 fun CalculatorButton(
