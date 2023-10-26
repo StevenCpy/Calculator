@@ -11,3 +11,10 @@ Let me know if you have any feedback!
 <img src="https://github.com/StevenCpy/Calculator/assets/96119669/e47b9a00-a67d-4101-84df-01604fda4489" width="200" height="420">
 <img src="https://github.com/StevenCpy/Calculator/assets/96119669/5267ba62-b8cf-4dee-89a2-69d7004b5caf" width="200" height="420">
 <img src="https://github.com/StevenCpy/Calculator/assets/96119669/a9c1e3cb-77e2-43b4-a73c-ffede1da0731" width="200" height="420">
+
+**RELEASE NOTES:**\
+**Version 1.01** - 25/10/2023
+- Shows a message when user tries to enter a number with more than 15 digits.  This is to prevent inaccuracy of result due to rounding/truncation because of how numbers are represented.
+- Added commas for easier visualization of longer numbers.
+- Changed layout.
+<img src="https://github.com/StevenCpy/Calculator/assets/96119669/1be60c3e-d3a7-47f0-9f2d-704a8ea069a4" width="200" height="420">
