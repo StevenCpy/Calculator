@@ -13,6 +13,9 @@ Let me know if you have any feedback!
 <img src="/uploads/5a8693d1ffdadac28ea4597632095f7a/Calculator_step4.jpg" width="150" height="310">
 <img src="/uploads/08329e6c7a46a4da2979d2968f76436a/Calculator_step5.jpg" width="150" height="310">
 
-RELEASE NOTES:
-Version 1.01 - 25/10/2023: Shows a message when user tries to enter a number with more than 15 digits.  This is to prevent inaccuracy of result due to rounding/truncation because of how numbers are represented.
-Changed layout and added commas for easier visualization of longer numbers.
+**RELEASE NOTES:**\
+**Version 1.01** - 25/10/2023
+- Shows a message when user tries to enter a number with more than 15 digits.  This is to prevent inaccuracy of result due to rounding/truncation because of how numbers are represented.
+- Added commas for easier visualization of longer numbers.
+- Changed layout.
+<img src="/uploads/326067244bba0f0fc66d07f0df0ef7aa/Calculator_v1.01.jpg" width="200" height="420">
