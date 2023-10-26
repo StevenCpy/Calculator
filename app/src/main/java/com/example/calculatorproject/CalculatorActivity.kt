@@ -53,16 +53,14 @@ fun ButtonLayout(calculatorState: CalculatorState) {
                 Timer().schedule(800) { calculatorState.maxDigits.value = false }
             }
         }
-        val text = addCommas(calculatorState.num1.value + calculatorState.operation.value + calculatorState.num2.value)
+        val text = addCommas(calculatorState.num1.value) + calculatorState.operation.value + addCommas(calculatorState.num2.value)
         Row (modifier = Modifier.width(360.dp).height(90.dp).background(color = Color.LightGray)) {
             Text(text, fontSize = 30.sp)
         }
         rowSpacing()
         Row {
             CalculatorButton("C", calculatorState,
-                Modifier
-                    .width(270.dp)
-                    .height(90.dp)) { CalculatorAction().clear(calculatorState) }
+                Modifier.width(270.dp).height(90.dp)) { CalculatorAction().clear(calculatorState) }
             columnSpacing()
             CalculatorButton("+", calculatorState) { CalculatorAction().operator("+", calculatorState) }
         }
